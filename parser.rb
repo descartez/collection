@@ -32,6 +32,14 @@
       end
     end
 
+    def medium_census
+
+    end
+
+    def date_census
+
+    end
+
   end
 
   class GalleryPiece
