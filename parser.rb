@@ -16,6 +16,8 @@
   # b. ensures tags are working.
   # c. checks to make sure csv is reading properly
   require 'csv'
+  require 'benchmark'
+
 
   class GalleryManager
     attr_reader :full_gallery
@@ -54,21 +56,16 @@
 
 gallery_manager = GalleryManager.new
 p 'running import'
-gallery_manager.import
+puts "#{Benchmark.measure { gallery_manager.import } }"
 p 'import done'
 
 
 p "----TESTS----"
-p 'total pieces: '
-p gallery_manager.full_gallery.length
+p "total pieces: #{gallery_manager.full_gallery.length}"
 p 'first piece match?'
-p "title?"
-p gallery_manager.full_gallery[0].title == "Ferdinandsbrücke Project, Vienna, Austria , Elevation, preliminary version"
-p "artist?"
-p gallery_manager.full_gallery[0].artist == "Otto Wagner"
+p "title: #{gallery_manager.full_gallery[0].title == "Ferdinandsbrücke Project, Vienna, Austria , Elevation, preliminary version"}"
+p "artist: #{gallery_manager.full_gallery[0].artist == "Otto Wagner"}"
 
 p 'last piece match?'
-p "title?"
-p gallery_manager.full_gallery[-1].title == "Untitled"
-p "artist?"
-p gallery_manager.full_gallery[-1].artist == "Felix Gonzalez-Torres"
+p "title: #{gallery_manager.full_gallery[-1].title == "Untitled"}"
+p "artist: #{gallery_manager.full_gallery[-1].artist == "Felix Gonzalez-Torres"}"
