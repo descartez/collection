@@ -56,4 +56,19 @@ gallery_manager = GalleryManager.new
 p 'running import'
 gallery_manager.import
 p 'import done'
-p gallery_manager.full_gallery[0]
+
+
+p "----TESTS----"
+p 'total pieces: '
+p gallery_manager.full_gallery.length
+p 'first piece match?'
+p "title?"
+p gallery_manager.full_gallery[0].title == "Ferdinandsbrücke Project, Vienna, Austria , Elevation, preliminary version"
+p "artist?"
+p gallery_manager.full_gallery[0].artist == "Otto Wagner"
+
+p 'last piece match?'
+p "title?"
+p gallery_manager.full_gallery[-1].title == "Untitled"
+p "artist?"
+p gallery_manager.full_gallery[-1].artist == "Felix Gonzalez-Torres"
