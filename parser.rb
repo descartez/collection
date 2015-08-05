@@ -15,3 +15,45 @@
   # a. makes sure that data is transcribing properly.
   # b. ensures tags are working.
   # c. checks to make sure csv is reading properly
+  require 'csv'
+
+  class GalleryManager
+    attr_reader :full_gallery
+    def initialize
+      @full_gallery = []
+    end
+
+    def import
+      CSV.foreach("Artworks.csv", {:headers => true, :header_converters => :symbol}) do |row|
+        p "importing #{row[:title]}"
+        @full_gallery << GalleryPiece.new(row)
+      end
+    end
+
+  end
+
+  class GalleryPiece
+    attr_reader :title, :artist, :artist_bio, :date, :medium, :dimensions, :credit_line, :moma_number, :classification, :department,:date_acquired, :curator_approved, :object_id, :url
+    def initialize(args)
+      @title = args[:title]
+      @artist = args[:artist]
+      @artist_bio = args[:artistbio]
+      @date = args[:date]
+      @medium = args[:medium]
+      @dimensions = args[:dimensions]
+      @credit_line = args[:creditline]
+      @moma_number = args[:momanumber]
+      @classification = args[:classification]
+      @department = args[:department]
+      @date_acquired = args[:dateacquired]
+      @curator_approved = args[:curatorapproved]
+      @object_id = args[:objectid]
+      @url = args[:url]
+    end
+  end
+
+gallery_manager = GalleryManager.new
+p 'running import'
+gallery_manager.import
+p 'import done'
+p gallery_manager.full_gallery[0]
